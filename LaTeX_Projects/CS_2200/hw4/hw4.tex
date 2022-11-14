@@ -1,0 +1,216 @@
+\documentclass[12pt,letterpaper]{article}
+\usepackage{fullpage}
+% Margins
+\usepackage[top=2cm, bottom=4.5cm, left=2.5cm, right=2.5cm]{geometry}
+\usepackage{amsmath,amsthm,amsfonts,amssymb,amscd}
+\usepackage{lastpage}
+\usepackage{enumerate}
+\usepackage{fancyhdr}
+\usepackage{mathrsfs}
+\usepackage{xcolor}
+\usepackage{graphicx}
+\usepackage{listings}
+\usepackage{hyperref}
+\usepackage{txfonts}
+\usepackage{titlesec}
+
+% For hyperlinks if I ever use them
+\hypersetup{%
+	colorlinks=true,
+	linkcolor=blue,
+	linkbordercolor={0 0 1}
+}
+
+% Edit these every document
+\newcommand\course{CS 2200}
+\newcommand\hwnumber{4}                 
+\newcommand\Name{Owen Miller-Fast}
+\newcommand\email{ormd3n@umsystem.edu}
+
+% \renewcommand\lstlistingname{Algorithm}
+% \renewcommand\lstlistlistingname{Algorithms}
+% \def\lstlistingautorefname{Alg.}
+
+% Subsections use letters instead of numbers
+\renewcommand{\thesubsection}{\thesection.\alph{subsection}}
+
+\setlength{\parindent}{0.0in}
+\setlength{\parskip}{0.05in}
+
+% Formatting sections and subsections
+\titleformat{\section}{\normalfont\bfseries}{Problem \thesection:}{1em}{}
+\titleformat{\subsection}{\normalfont\bfseries}{\thesubsection)}{2em}{}
+\fancypagestyle{firstpage}
+{
+	\lhead{\Name{}\\\email}
+	\chead{\textbf{Homework \hwnumber}}
+	\rhead{\course\\\today}
+}
+\fancypagestyle{following}
+{
+	\lhead{\Name{}\\\email}
+	\rhead{\course\\\today}
+}
+
+\pagestyle{fancyplain}
+\thispagestyle{firstpage}
+\pagestyle{following}
+\headheight 35pt
+% Footer
+\lfoot{}
+\cfoot{}
+\rfoot{\small\thepage}
+\headsep 1em
+
+\begin{document}
+	% Document begins
+	
+	\section{}
+	\textbf{C}ontext \textbf{F}ree \textbf{G}rammar
+	\section{}
+	\textbf{C}homsky \textbf{N}ormal \textbf{F}orm
+	\section{}
+	Unless otherwise noted, the \textbf{variable} on the left-hand side of the first line is the \textbf{start variable}
+	
+	So, \textit{\textbf{C}} is the \textbf{start variable}
+	\section{}
+	A Context Free Grammar is made up of three parts:
+	\begin{enumerate}
+		\item A finite set called \textbf{variables}
+		\item A finite set, disjoint from set of \textit{variables}, called \textbf{terminals}
+		\item A finite set of \textbf{rules} with each being a variable going to string of \textit{variables} and \textit{terminals}
+	\end{enumerate}
+	Note: A Context Free Grammar also is made up \textit{starting variable} but does not always need to be defined. If the \textit{starting variable} is not defined, the variable in the first rule is assumed to be the \textit{starting variable}
+	\section{}
+	\subsection{}
+		$V=\{A,B,S\}\\\sum=\{a,b\}\\$
+		$R:$
+		\begin{gather*}
+			S \rightarrow A\\
+			A \rightarrow a\arrowvert aBa\\
+			B \rightarrow BB\arrowvert b\arrowvert a\arrowvert\varepsilon
+		\end{gather*}
+		$S\in V=S$\\
+		$G_1=(V,\sum,R,S)$
+	\subsection{}
+		\begin{gather*}
+			S \rightarrow A\rightarrow aBa\rightarrow aBBa\rightarrow abBa\rightarrow abba
+		\end{gather*}
+	\subsection{}
+		$V=\{S\}\\\sum=\{a,b\}\\$
+		$R:$
+		\begin{gather*}
+			S \rightarrow aSa\arrowvert bSb\arrowvert a\arrowvert b\arrowvert \varepsilon
+		\end{gather*}
+		$S\in V=S$\\
+		$G_2=(V,\sum,R,S)$
+	\subsection{}
+		\begin{gather*}
+			S \rightarrow aSa\rightarrow abSba\rightarrow abba
+		\end{gather*}
+	\section{}
+		\textit{Start variable}: \textit{C}\\
+		
+		\textbf{Step 1: Add new start variable}\\
+		\begin{gather*}
+			\textcolor{green}{S_0 \rightarrow C}\\
+			C \rightarrow ABC\arrowvert abc\\
+			A \rightarrow aA\arrowvert AC\arrowvert BC\arrowvert a\arrowvert \varepsilon\\
+			B \rightarrow Bb\arrowvert bB\arrowvert b\arrowvert \varepsilon
+		\end{gather*}
+		\textbf{Step 2: Eliminate $\varepsilon$-rules}\\
+		
+		Step 2a: Removing B $\rightarrow \varepsilon$
+		\begin{gather*}
+			S_0 \rightarrow C\\
+			C \rightarrow ABC\arrowvert abc\\
+			A \rightarrow aA\arrowvert AC\arrowvert BC\arrowvert a\arrowvert \varepsilon\\
+			B \rightarrow Bb\arrowvert bB\arrowvert b\arrowvert \textcolor{blue}{\varepsilon}\\
+			\\S_0 \rightarrow C\\
+			C \rightarrow ABC\arrowvert abc\arrowvert \textcolor{green}{AC}\\
+			A \rightarrow aA\arrowvert AC\arrowvert BC\arrowvert a\arrowvert \textcolor{green}{C}\arrowvert \varepsilon\\
+			B \rightarrow Bb\arrowvert bB\arrowvert b
+		\end{gather*}
+	
+		Step 2b: Removing A $\rightarrow \varepsilon$
+		\begin{gather*}
+			S_0 \rightarrow C\\
+			C \rightarrow ABC\arrowvert abc\\
+			A \rightarrow aA\arrowvert AC\arrowvert BC\arrowvert a\arrowvert C\arrowvert \textcolor{blue}{\varepsilon}\\
+			B \rightarrow Bb\arrowvert bB\arrowvert b\\
+			\\S_0 \rightarrow C\\
+			C \rightarrow ABC\arrowvert abc\arrowvert AC\arrowvert \textcolor{green}{BC}\arrowvert \textcolor{green}{C}\\
+			A \rightarrow aA\arrowvert AC\arrowvert BC\arrowvert a\arrowvert C\\
+			B \rightarrow Bb\arrowvert bB\arrowvert b
+		\end{gather*}
+		\textbf{Step 3: Remove unit rules}\\
+		\\Step 3a: Removing $S_0\rightarrow$ C
+		\begin{gather*}
+			S_0 \rightarrow \textcolor{blue}{C}\\
+			C \rightarrow ABC\arrowvert abc\arrowvert AC\arrowvert BC\arrowvert C\\
+			A \rightarrow aA\arrowvert AC\arrowvert BC\arrowvert a\arrowvert \textcolor{blue}{C}\\
+			B \rightarrow Bb\arrowvert bB\arrowvert b\\
+			\\S_0 \rightarrow \textcolor{green}{ABC}\arrowvert \textcolor{green}{abc}\arrowvert \textcolor{green}{AC}\arrowvert \textcolor{green}{BC}\\
+			C \rightarrow ABC\arrowvert abc\arrowvert AC\arrowvert BC\\
+			A \rightarrow aA\arrowvert AC\arrowvert BC\arrowvert a\arrowvert C\\
+			B \rightarrow Bb\arrowvert bB\arrowvert b
+		\end{gather*}
+		\\Step 3b: Removing A$\rightarrow$ C
+		\begin{gather*}
+			S_0 \rightarrow ABC\arrowvert abc\arrowvert AC\arrowvert BC\\
+			C \rightarrow ABC\arrowvert abc\arrowvert AC\arrowvert BC\\
+			A \rightarrow aA\arrowvert AC\arrowvert BC\arrowvert a\arrowvert \textcolor{blue}{C}\\
+			B \rightarrow Bb\arrowvert bB\arrowvert b\\
+			\\S_0 \rightarrow ABC\arrowvert abc\arrowvert AC\arrowvert BC\\
+			C \rightarrow ABC\arrowvert abc\arrowvert AC\arrowvert BC\\
+			A \rightarrow aA\arrowvert AC\arrowvert BC\arrowvert a\arrowvert \textcolor{green}{ABC}\arrowvert \textcolor{green}{abc}\\
+			B \rightarrow Bb\arrowvert bB\arrowvert b\\
+		\end{gather*}
+		\\Step 3c: Adding $Z_1,Z_2,Z_3,Z_4,Z_5$
+		\begin{gather*}
+			S_0 \rightarrow ABC\arrowvert abc\arrowvert AC\arrowvert BC\\
+			C \rightarrow ABC\arrowvert abc\arrowvert AC\arrowvert BC\\
+			A \rightarrow aA\arrowvert AC\arrowvert BC\arrowvert a\arrowvert ABC\arrowvert abc\\
+			B \rightarrow Bb\arrowvert bB\arrowvert b\\
+			\textcolor{green}{Z_1 \rightarrow BC}\\
+			\textcolor{green}{Z_2 \rightarrow Z_4 Z_5}\\
+			\textcolor{green}{Z_3 \rightarrow a}\\
+			\textcolor{green}{Z_4 \rightarrow b}\\
+			\textcolor{green}{Z_5 \rightarrow c}
+		\end{gather*}
+		\\Step 3d: Fixing rules
+		\begin{gather*}
+			S_0 \rightarrow A\textcolor{blue}{BC}\arrowvert \textcolor{blue}{abc}\arrowvert AC\arrowvert BC\\
+			C \rightarrow A\textcolor{blue}{BC}\arrowvert \textcolor{blue}{abc}\arrowvert AC\arrowvert BC\\
+			A \rightarrow \textcolor{blue}{a}A\arrowvert AC\arrowvert BC\arrowvert a\arrowvert A\textcolor{blue}{BC}\arrowvert \textcolor{blue}{abc}\\
+			B \rightarrow B\textcolor{blue}{b}\arrowvert \textcolor{blue}{b}B\arrowvert b\\
+			Z_1 \rightarrow BC\\
+			Z_2 \rightarrow Z_4 Z_5\\
+			Z_3 \rightarrow a\\
+			Z_4 \rightarrow b\\
+			Z_5 \rightarrow c\\
+			\\S_0 \rightarrow A\textcolor{green}{Z_1}\arrowvert \textcolor{green}{Z_3 Z_2}\arrowvert AC\arrowvert BC\\
+			C \rightarrow A\textcolor{green}{Z_1}\arrowvert \textcolor{green}{Z_3 Z_2}\arrowvert AC\arrowvert BC\\
+			A \rightarrow \textcolor{green}{Z_3}A\arrowvert AC\arrowvert BC\arrowvert a\arrowvert A\textcolor{green}{Z_1}\arrowvert \textcolor{green}{Z_3 Z_2}\\
+			B \rightarrow B\textcolor{green}{Z_4}\arrowvert \textcolor{green}{Z_4}B\arrowvert b\\
+			Z_1 \rightarrow BC\\
+			Z_2 \rightarrow Z_4 Z_5\\
+			Z_3 \rightarrow a\\
+			Z_4 \rightarrow b\\
+			Z_5 \rightarrow c
+		\end{gather*}
+		\textbf{Answer:}\\
+		
+		\begin{gather*}
+			S_0 \rightarrow AZ_1\arrowvert Z_3 Z_2\arrowvert AC\arrowvert BC\\
+			C \rightarrow AZ_1\arrowvert Z_3 Z_2\arrowvert AC\arrowvert BC\\
+			A \rightarrow Z_3A\arrowvert AC\arrowvert BC\arrowvert a\arrowvert AZ_1\arrowvert Z_3 Z_2\\
+			B \rightarrow BZ_4\arrowvert Z_4 B\arrowvert b\\
+			Z_1 \rightarrow BC\\
+			Z_2 \rightarrow Z_4 Z_5\\
+			Z_3 \rightarrow a\\
+			Z_4 \rightarrow b\\
+			Z_5 \rightarrow c
+		\end{gather*}
+		
+\end{document}

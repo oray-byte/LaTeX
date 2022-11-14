@@ -1,0 +1,95 @@
+\documentclass[11pt,letterpaper]{article}
+\usepackage{fullpage}
+% Margins
+\usepackage[top=2cm, bottom=4.5cm, left=2.5cm, right=2.5cm]{geometry}
+\usepackage{amsmath,amsthm,amsfonts,amssymb,amscd}
+\usepackage{lastpage}
+\usepackage{enumerate}
+\usepackage{fancyhdr}
+\usepackage{mathrsfs}
+\usepackage{txfonts}
+\usepackage{titlesec}
+\usepackage{graphicx}
+
+\renewcommand{\thesubsection}{\thesection.\alph{subsection}}
+
+\setlength{\parindent}{0.0in}
+\setlength{\parskip}{0.05in}
+
+% Formatting sections and subsections
+\titleformat{\section}{\normalfont\bfseries}{\thesection.}{0.5em}{}
+\titleformat{\subsection}{\footnotesize\bfseries}{\thesubsection)}{0.5em}{}
+
+\newcommand{\name}{Owen Miller-Fast}
+\newcommand{\email}{ormd3n@umsystem.edu}
+\newcommand{\research}{Traffic Prediction}
+
+\fancypagestyle{firstpage}
+{
+	\lhead{\name{}\\\email}
+	\chead{\research}
+	\rhead{\\\today}
+}
+\fancypagestyle{following}
+{
+	\lhead{\name{}\\\email}
+	\rhead{\\\today}
+}
+
+\pagestyle{fancyplain}
+\thispagestyle{firstpage}
+\pagestyle{following}
+\headheight 35pt
+% Footer
+\lfoot{}
+\cfoot{}
+\rfoot{\small\thepage}
+\headsep 1em
+
+\begin{document}
+	
+	\section{Past week:}
+		\subsection{Prioritized list of goals, as stated on the previous week's report}
+			\footnotesize
+			\begin{itemize}
+				\item Determine documentation style
+				\item Discuss with group our plans going forward
+			\end{itemize}
+			\normalfont
+		\subsection{Accomplishments}
+			\footnotesize
+			\begin{itemize}
+				\item Shared both CARLA and book with group
+				\item Still deciding between the two
+			\end{itemize}
+			\normalfont
+		\subsection{Explanations of any goals not met}
+			\footnotesize
+			\begin{itemize}
+				\item Group has been relatively busy with school and extracurricular s
+			\end{itemize}
+			\normalfont
+		\subsection{Self-assessment of your progress, on a scale of 1 (worst) to 10 (best)}
+			\footnotesize
+			\begin{itemize}
+				\item 5
+				\item I felt like I have done nothing since my time is being divided among so many things right now
+			\end{itemize}
+			\normalfont
+	\section{Coming week:}
+		\subsection{Prioritized list of goals}
+			\footnotesize
+			\begin{itemize}
+				\item Determine how the group wants to document
+				\item Read paper that Dr. Hurson sent
+				\item Run the simulator with the data in the paper and compare the old results with the new
+				\item Begin documenting Distributed Simulator
+			\end{itemize}
+			\normalfont
+	\section{Semester}
+		\begin{figure}[h!]
+			\centering
+			\includegraphics[width=5in]{gantt.png}
+		\end{figure}
+		
+\end{document}
